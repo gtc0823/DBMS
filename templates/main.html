@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medical Database System</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #c9dff3;
+            font-family: 'Arial', sans-serif;
+            background-image: url('background.jpg'); /* 背景图像 */
+            background-size: cover;
+            background-position: center;
+        }
+        .container {
+            text-align: center;
+            background-color: rgba(255, 255, 255, 0.8); /* 半透明背景 */
+            padding: 50px;
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* 添加阴影 */
+        }
+        h1 {
+            font-size: 50px;
+            margin-bottom: 30px;
+            color: #2f4f4f;
+            font-family: 'Georgia', serif; /* 更改标题字体 */
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* 添加文本阴影 */
+        }
+        .login {
+            font-size: 30px;
+            margin-bottom: 20px;
+        }
+        .buttons {
+            display: flex;
+            justify-content: center;
+        }
+        .button {
+            margin: 0 10px;
+            padding: 15px 30px; /* 增加按钮的内边距 */
+            font-size: 24px; /* 减小按钮字体以适应新的布局 */
+            border: none; /* 移除边框 */
+            border-radius: 10px;
+            background-color: #000000; /* 修改按钮背景颜色为紫色 */
+            text-decoration: none;
+            color: rgb(255, 255, 255); /* 修改按钮文本颜色 */
+            transition: background-color 0.3s, transform 0.3s;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* 按钮阴影 */
+        }
+        .button:hover {
+            background-color: #ecbff0;
+            transform: translateY(-3px); /* 按钮悬停效果 */
+        }
+        .button:active {
+            background-color: #cda6f1;
+            transform: translateY(1px); /* 按钮点击效果 */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Medical Database System</h1>
+        <div class="buttons">
+            <a href="{{ url_for('login_doctor') }}" class="button">Doctor</a>
+            <a href="{{ url_for('login_purchaser') }}" class="button">Purchaser</a>
+            <a href="{{ url_for('login_administrator') }}" class="button">Administration Staff</a>
+        </div>
+    </div>
+</body>
+</html>

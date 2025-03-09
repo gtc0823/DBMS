@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medical Database System</title>
+    <style>
+        body {
+            text-align: center;
+            background-color: #f0f8ff; /* 调整背景颜色 */
+            font-family: Arial, sans-serif; /* 全局字体设置为 Arial */
+            margin: 0;
+            padding: 0;
+        }
+        h1 {
+            font-size: 36px;
+            margin-bottom: 20px;
+            color: #2f4f4f; /* 调整标题颜色 */
+        }
+        .buttons {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        .button {
+            margin: 0 10px;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            background-color: #000000;
+            color: #fff;
+            text-decoration: none;
+            transition: background-color 0.3s, transform 0.3s;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+        }
+        .button:hover {
+            background-color: #5a9bd6;
+            transform: translateY(-3px);
+        }
+        .button:active {
+            background-color: #357ab7;
+            transform: translateY(1px);
+        }
+        .sidebar {
+            background-color: #e6e6fa;
+            height: 100vh; /* 拉長側邊欄 */
+            width: 220px;
+            padding: 20px;
+            box-sizing: border-box;
+            position: fixed; /* 固定在左侧 */
+            left: 0;
+            top: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .sidebar .button {
+            width: 100%;
+            margin-bottom: 20px;
+        }
+        .container {
+            margin-left: 240px; /* 留出侧边栏的宽度 */
+            padding: 20px;
+            background-color: #fff; /* 调整内容背景颜色 */
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: calc(100% - 260px); /* 留出侧边栏的宽度和左右间距 */
+            text-align: left; /* 将内容文字向左对齐 */
+        }
+        .Data-Content {
+            width: 100%;
+            line-height: 40px;
+        }
+        .form-group {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .form-group label {
+            flex: 0 0 120px;
+            text-align: left;
+            padding-right: 10px;
+        }
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            flex: 1;
+            margin-left: 10px;
+        }
+        .buttons-bottom {
+            clear: both;
+            margin-top: 20px;
+            text-align: center;
+        }
+        input, select, textarea {
+            width: calc(100% - 20px);
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        textarea {
+            resize: vertical;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 18px;
+            text-align: left;
+        }
+        table th,
+        table td {
+            padding: 12px;
+            border-bottom: 1px solid #ddd;
+        }
+        table th {
+            background-color: #f2f2f2;
+        }
+        table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        table tr:hover {
+            background-color: #f1f1f1;
+        }
+    </style>
+     <script>
+        function showAlert(message) {
+            alert(message);
+        }
+    </script>
+</head>
+<body>
+    <h1>Medical Database System</h1>
+    <div class="buttons">
+        <a href="/doctor" class="button">Doctor</a>
+        <a href="/purchaser" class="button">Purchaser</a>
+        <a href="/admin_first" class="button">Administration Staff</a>
+    </div>
+    <div class="sidebar">
+        <a href="/administrator" class="button">Appointment</a>
+        <a href="/adminpatient" class="button">Patient Data</a>
+    </div>
+    <div class="container">
+        <form method="post" action="/adminpatient">
+            <div class="Data-Content">
+                <div class="form-group">
+                    <label for="id">ID:</label>
+                    <input type="text" id="id" name="id" style="width:100px">
+                </div>
+                <div class="form-group">
+                    <label for="date">Birth Date:</label>
+                    <input type="date" id="date" name="date">
+                </div>
+                <div class="form-group">
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name">
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone Number:</label>
+                    <input type="text" id="phone" name="phone">
+                </div>
+                <div class="form-group">
+                    <label for="authorize">Authorize:</label>
+                    <select id="authorize" name="authorize">
+                        <option value="yes">True</option>
+                        <option value="no">False</option>
+                    </select>
+                </div>
+                <div class="buttons-bottom">
+                    <button type="submit" name="action" value="search" class="button">Search</button>
+                    <button type="submit" name="action" value="update" class="button">Update</button>
+                    <button type="submit" name="action" value="delete" class="button">Delete</button>
+                    <button type="submit" name="action" value="insert" class="button">Insert</button>
+                </div>
+                <!-- <div>
+                    <label for="history" style="margin-left: 20px;">History:</label><br />
+                    <textarea id="history" name="history" style="width:calc(100% - 40px); height: 200px; margin-left: 20px;">{{ patient if patient }}</textarea>
+                </div> -->
+                <div>
+                    <table id="items-table">
+                        <thead>
+                            <tr>
+                                <th class="item-column">Patient ID</th>
+                                <th>First Name</th>
+                                <th>Last Name</th>
+                                <th>Birth Date</th>
+                                <th>Phone Number</th>
+                                <th>Authorize</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% if patient %}
+                            <tr>
+                                <td class="item-column">{{ patient[0] }}</td>
+                                <td>{{ patient[2] }}</td>
+                                <td>{{ patient[3] }}</td>
+                                <td>{{ patient[4] }}</td>
+                                <td>{{ patient[5] }}</td>
+                                <td>{{ patient[6] }}</td>
+                            </tr>
+                            {% endif %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

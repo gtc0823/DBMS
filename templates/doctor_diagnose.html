@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medical Database System</title>
+    <style>
+        body {
+            text-align: center;
+            background-color: #f0f8ff;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        h1 {
+            font-size: 36px;
+            margin-bottom: 20px;
+            color: #2f4f4f;
+        }
+        .buttons {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        .button {
+            margin: 0 10px;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            background-color: #000000;
+            color: #fff;
+            text-decoration: none;
+            transition: background-color 0.3s, transform 0.3s;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+        }
+        .button:hover {
+            background-color: #5a9bd6;
+            transform: translateY(-3px);
+        }
+        .button:active {
+            background-color: #357ab7;
+            transform: translateY(1px);
+        }
+        .sidebar {
+            background-color: #e6e6fa;
+            height: 100vh;
+            width: 220px;
+            padding: 20px;
+            box-sizing: border-box;
+            position: fixed;
+            left: 0;
+            top: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .sidebar .button {
+            width: 100%;
+            margin-bottom: 20px;
+        }
+        .container {
+            margin-left: 240px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: calc(100% - 260px);
+            text-align: left;
+        }
+        .form-group {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .form-group label {
+            flex: 0 0 150px;
+            text-align: left;
+            padding-right: 10px;
+        }
+        .form-group input,
+        .form-group select {
+            flex: 1;
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Medical Database System</h1>
+    <div class="buttons">
+        <a href="/doctor" class="button">Doctor</a>
+        <a href="/purchaser" class="button">Purchaser</a>
+        <a href="/admin_first" class="button">Administration Staff</a>
+    </div>
+    <div class="sidebar">
+        <a href="/patientdata" class="button">Patient Data</a>
+        <a href="/surgery" class="button">Surgery</a>
+        <a href="/diagnose" class="button">Diagnose</a>
+    </div>
+    <div class="container">
+        <form method="POST">
+            <div class="form-group">
+                <label for="equipment">Equipment:</label>
+                <select id="equipment" name="equipment">
+                    {% for equipment in equipment_names %}
+                        <option value="{{ equipment }}">{{ equipment }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="quantity">Quantity:</label>
+                <input type="text" id="quantity" name="quantity" required>
+            </div>
+            <div class="form-group">
+                <label for="problem">Problem:</label>
+                <input type="text" id="problem" name="problem" >
+            </div>
+            <div class="form-group">
+                <label for="comment">Comment:</label>
+                <input type="text" id="comment" name="comment" >
+            </div>
+            <div>
+                <input type="submit" class="button" value="Update">
+            </div>
+        </form>
+    </div>
+</body>
+</html>
+

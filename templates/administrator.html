@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medical Database System</title>
+    <style>
+        body {
+            text-align: center;
+            background-color: #f0f8ff; /* 調整背景顏色 */
+            font-family: Arial, sans-serif; /* 全局字體設置為 Arial */
+            margin: 0;
+            padding: 0;
+        }
+        h1 {
+            font-size: 36px;
+            margin-bottom: 20px;
+            color: #2f4f4f; /* 調整標題顏色 */
+        }
+        .buttons {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        .button {
+            margin: 0 10px;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            background-color: #000000;
+            color: #fff;
+            text-decoration: none;
+            transition: background-color 0.3s, transform 0.3s;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+        }
+        .button:hover {
+            background-color: #5a9bd6;
+            transform: translateY(-3px);
+        }
+        .button:active {
+            background-color: #357ab7;
+            transform: translateY(1px);
+        }
+        .sidebar {
+            background-color: #e6e6fa;
+            height: 130%; /* 拉長側邊欄 */
+            width: 220px;
+            padding: 20px;
+            box-sizing: border-box;
+            position: fixed; /* 固定在左側 */
+            left: 0;
+            top: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .sidebar .button {
+            width: 100%;
+            margin-bottom: 20px;
+        }
+        .container {
+            margin-left: 240px; /* 留出側邊欄的寬度 */
+            padding: 20px;
+            background-color: #fff; /* 調整內容背景顏色 */
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: calc(100% - 260px); /* 留出側邊欄的寬度和左右間距 */
+            text-align: left; /* 將內容文字向左對齊 */
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 5px;
+            text-align: left;
+        }
+        .Data-Content {
+            width: 100%; /* 表單寬度 */
+            line-height: 40px;
+        }
+        .form-group {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .form-group label {
+            width: 200px; /* 標簽寬度 */
+            margin-right: 10px;
+        }
+        .form-group input, .form-group textarea, .form-group select {
+            flex: 1;
+            padding: 8px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .buttons-bottom {
+            clear: both;
+            margin-top: 20px;
+            text-align: center;
+        }
+        textarea {
+            resize: vertical;
+        }
+    </style>
+</head>
+<body>
+    <h1>Medical Database System</h1>
+    <div class="buttons">
+        <a href="/doctor" class="button">Doctor</a>
+        <a href="/purchaser" class="button">Purchaser</a>
+        <a href="/admin_first" class="button">Administration Staff</a>
+    </div>
+    <div class="sidebar">
+        <a href="/administrator" class="button">Appointment</a>
+        <a href="/adminpatient" class="button">Patient Data</a>
+    </div>
+    <div class="container">
+        <form method="post" action="/administrator">
+            <div class="Data-Content">
+                <div class="form-group">
+                    <label for="name">Patient ID:</label>
+                    <input type="text" id="name" name="patientid">
+                </div>
+                <div class="form-group">
+                    <label for="name">Doctor ID:</label>
+                    <input type="text" id="name" name="doctorid">
+                </div>
+                <div class="form-group">
+                    <label for="date">Appoint time:</label>
+                    <input type="datetime-local" id="date" name="date">
+                </div>
+                <div class="form-group">
+                    <label for="action">Select Action:</label>
+                    <select id="action" name="action">
+                        <option value="diagnose">Diagnose</option>
+                        <option value="operation">Operation</option>
+                    </select>
+                </div>
+            </div>
+            <div class="buttons-bottom">
+                <button type="submit" name="action2" value="update" class="button">Update</button>
+            </div>
+            <!-- <div>
+                <label for="history" style="margin-left: 20px;">Appointed time:</label><br />
+                <textarea id="history" name="history" style="width: calc(100% - 40px); height: 200px; margin-left: 20px;">
+                {{ appointment }}</textarea><br />
+            </div> -->
+        </form>
+    </div>
+</body>
+</html>

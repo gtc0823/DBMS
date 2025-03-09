@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medical Database System</title>
+    <style>
+        body {
+            text-align: center;
+            background-color: #f0f8ff; /* 調整背景顏色 */
+            font-family: Arial, sans-serif; /* 全局字體設置為 Arial */
+            margin: 0;
+            padding: 0;
+        }
+        h1 {
+            font-size: 36px;
+            margin-bottom: 20px;
+            color: #2f4f4f; /* 調整標題顏色 */
+        }
+        .buttons {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        .button {
+            margin: 0 10px;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            background-color: #000000;
+            color: #fff;
+            text-decoration: none;
+            transition: background-color 0.3s, transform 0.3s;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+        }
+        .button:hover {
+            background-color: #5a9bd6;
+            transform: translateY(-3px);
+        }
+        .button:active {
+            background-color: #357ab7;
+            transform: translateY(1px);
+        }
+        .sidebar {
+            background-color: #e6e6fa;
+            height: 100vh; /* 拉長側邊欄 */
+            width: 220px;
+            padding: 20px;
+            box-sizing: border-box;
+            position: fixed; /* 固定在左側 */
+            left: 0;
+            top: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .sidebar .button {
+            width: 100%;
+            margin-bottom: 20px;
+        }
+        .container {
+            margin-left: 240px; /* 留出側邊欄的寬度 */
+            padding: 20px;
+            background-color: #fff; /* 調整內容背景顏色 */
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: calc(100% - 260px); /* 留出側邊欄的寬度和左右間距 */
+            text-align: left; /* 將內容文字向左對齊 */
+        }
+        .Data-Content {
+            width: 100%;
+            line-height: 40px;
+        }
+        .form-group {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .form-group label {
+            flex: 0 0 150px;
+            text-align: left;
+            padding-right: 10px;
+        }
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            flex: 1;
+            margin-left: 10px;
+        }
+        .buttons-bottom {
+            clear: both;
+            margin-top: 20px;
+            text-align: center;
+        }
+        input, select, textarea {
+            width: calc(100% - 20px);
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        textarea {
+            resize: vertical;
+        }
+        .equipment-group {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+        .equipment-item {
+            display: flex;
+            align-items: center;
+            width: calc(50% - 10px);
+            margin-bottom: 10px;
+        }
+        .equipment-item label {
+            width: 150px;
+            margin-right: 10px;
+        }
+        .instrument-group {
+            display: flex;
+            flex-wrap: nowrap; /* Change from wrap to nowrap */
+            justify-content: flex-start;
+        }
+        .instrument-item {
+            display: flex;
+            align-items: center;
+            margin-right: 50px;
+            margin-bottom: 1px;
+            white-space: nowrap; /* Prevent line breaks */
+        }
+        .bold-label {
+            font-weight: bold; /* 設置粗體 */
+        }
+        .additional-equipment-group {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+            justify-content: space-between;
+        }
+        .additional-equipment-group select {
+            width: calc(60% - 10px);
+            margin-right: 10px;
+        }
+        .additional-equipment-group input {
+            width: calc(40% - 10px);
+        }
+        .instrument-row {
+            display: flex;
+            justify-content: flex-start;
+            flex-wrap: wrap;
+        }
+        .counter {
+            display: flex;
+            align-items: center;
+        }
+        .counter button {
+            width: 30px;
+            height: 30px;
+            border: none;
+            background-color: #5a9bd6;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .counter input {
+            width: 50px;
+            text-align: center;
+            border: 1px solid #ccc;
+            margin: 0 5px;
+        }
+    </style>
+    <script>
+        function incrementValue(inputId) {
+            var value = parseInt(document.getElementById(inputId).value, 10);
+            value = isNaN(value) ? 0 : value;
+            value++;
+            document.getElementById(inputId).value = value;
+        }
+
+        function decrementValue(inputId) {
+            var value = parseInt(document.getElementById(inputId).value, 10);
+            value = isNaN(value) ? 0 : value;
+            value < 1 ? value = 1 : '';
+            value--;
+            document.getElementById(inputId).value = value;
+        }
+    </script>
+</head>
+<body>
+    <h1>Medical Database System</h1>
+    <div class="buttons">
+        <a href="/doctor" class="button">Doctor</a>
+        <a href="/purchaser" class="button">Purchaser</a>
+        <a href="/admin_first" class="button">Administration Staff</a>
+    </div>
+    <div class="sidebar">
+        <a href="/patientdata" class="button">Patient Data</a>
+        <a href="/surgery" class="button">Surgery</a>
+        <a href="/diagnose" class="button">Diagnose</a>
+    </div>
+    <div class="container">
+        <form method="post" action="/surgery">
+            <div class="Data-Content">
+                <div class="form-group">
+                    <label for="instrument" class="bold-label">Instrument</label>
+                </div>
+                <div class="instrument-group">
+                    <div class="instrument-item">
+                        <input type="checkbox" id="instrument1" name="instrument[]" value="射頻治療儀">
+                        <label for="instrument1">射頻治療儀</label>
+                    </div>
+                    <div class="instrument-item">
+                        <input type="checkbox" id="instrument2" name="instrument[]" value="超聲波治療器材">
+                        <label for="instrument2">超聲波治療器材</label>
+                    </div>
+                    <div class="instrument-item">
+                        <input type="checkbox" id="instrument3" name="instrument[]" value="冷凍治療器材">
+                        <label for="instrument3">冷凍治療器材</label>
+                    </div>
+                    <div class="instrument-item">
+                        <input type="checkbox" id="instrument4" name="instrument[]" value="激光治療器材">
+                        <label for="instrument4">激光治療器材</label>
+                    </div>
+                    <div class="instrument-item">
+                        <input type="checkbox" id="instrument5" name="instrument[]" value="脈衝光治療儀">
+                        <label for="instrument5">脈衝光治療儀</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="equipment" class="bold-label">Equipment</label>
+                </div>
+                <div class="equipment-group">
+                    <div class="equipment-item">
+                        <label for="equipment1">手術刀:</label>
+                        <div class="counter">
+                            <button type="button" onclick="decrementValue('equipment1_quantity')">-</button>
+                            <input type="text" id="equipment1_quantity" name="equipment[]" value="0">
+                            <button type="button" onclick="incrementValue('equipment1_quantity')">+</button>
+                        </div>
+                    </div>
+                    <div class="equipment-item">
+                        <label for="equipment2">PVC手套:</label>
+                        <div class="counter">
+                            <button type="button" onclick="decrementValue('equipment2_quantity')">-</button>
+                            <input type="text" id="equipment2_quantity" name="equipment[]" value="0">
+                            <button type="button" onclick="incrementValue('equipment2_quantity')">+</button>
+                        </div>
+                    </div>
+                    <div class="equipment-item">
+                        <label for="equipment3">果凍凝膠面罩:</label>
+                        <div class="counter">
+                            <button type="button" onclick="decrementValue('equipment3_quantity')">-</button>
+                            <input type="text" id="equipment3_quantity" name="equipment[]" value="0">
+                            <button type="button" onclick="incrementValue('equipment3_quantity')">+</button>
+                        </div>
+                    </div>
+                    <div class="equipment-item">
+                        <label for="equipment4">生理食鹽水:</label>
+                        <div class="counter">
+                            <button type="button" onclick="decrementValue('equipment4_quantity')">-</button>
+                            <input type="text" id="equipment4_quantity" name="equipment[]" value="0">
+                            <button type="button" onclick="incrementValue('equipment4_quantity')">+</button>
+                        </div>
+                    </div>
+                    <div class="equipment-item">
+                        <label for="equipment5">紗布:</label>
+                        <div class="counter">
+                            <button type="button" onclick="decrementValue('equipment5_quantity')">-</button>
+                            <input type="text" id="equipment5_quantity" name="equipment[]" value="0">
+                            <button type="button" onclick="incrementValue('equipment5_quantity')">+</button>
+                        </div>
+                    </div>
+                    <div class="equipment-item">
+                        <label for="equipment6">面膜紙:</label>
+                        <div class="counter">
+                            <button type="button" onclick="decrementValue('equipment6_quantity')">-</button>
+                            <input type="text" id="equipment6_quantity" name="equipment[]" value="0">
+                            <button type="button" onclick="incrementValue('equipment6_quantity')">+</button>
+                        </div>
+                    </div>
+                    <div class="equipment-item">
+                        <label for="equipment7">麻醉藥劑:</label>
+                        <div class="counter">
+                            <button type="button" onclick="decrementValue('equipment7_quantity')">-</button>
+                            <input type="text" id="equipment7_quantity" name="equipment[]" value="0">
+                            <button type="button" onclick="incrementValue('equipment7_quantity')">+</button>
+                        </div>
+                    </div>
+                    <div class="equipment-item">
+                        <label for="equipment8">肉毒桿菌素:</label>
+                        <div class="counter">
+                            <button type="button" onclick="decrementValue('equipment8_quantity')">-</button>
+                            <input type="text" id="equipment8_quantity" name="equipment[]" value="0">
+                            <button type="button" onclick="incrementValue('equipment8_quantity')">+</button>
+                        </div>
+                    </div>
+                    <div class="equipment-item">
+                        <label for="equipment9">酒精棉片:</label>
+                        <div class="counter">
+                            <button type="button" onclick="decrementValue('equipment9_quantity')">-</button>
+                            <input type="text" id="equipment9_quantity" name="equipment[]" value="0">
+                            <button type="button" onclick="incrementValue('equipment9_quantity')">+</button>
+                        </div>
+                    </div>
+                    <div class="equipment-item">
+                        <label for="equipment10">玻尿酸:</label>
+                        <div class="counter">
+                            <button type="button" onclick="decrementValue('equipment10_quantity')">-</button>
+                            <input type="text" id="equipment10_quantity" name="equipment[]" value="0">
+                            <button type="button" onclick="incrementValue('equipment10_quantity')">+</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div>
+                        <label for="additional_equipment" class="bold-label">Additional Equipment</label>
+                    </div>
+                    <p></p>
+                    <div class="additional-equipment-group">
+                        <select id="additional_equipment" name="additional_equipment">
+                            <option value="滾輪針">滾輪針</option>
+                            <option value="護膚霜">護膚霜</option>
+                            <option value="面部按摩機">面部按摩機</option>
+                            <option value="酒精擦布">酒精擦布</option>
+                            <option value="碘酒">碘酒</option>
+                            <option value="縫合線">縫合線</option>
+                            <option value="止血藥劑">止血藥劑</option>
+                            <option value="聚左旋乳酸">聚左旋乳酸</option>
+                            <option value="聚乳酸">聚乳酸</option>
+                        </select>
+                        <input type="text" id="additional_quantity" name="additional_quantity" placeholder="數量">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="problem">Problem:</label>
+                    <input type="text" id="problem" name="problem">
+                </div>
+                <div class="form-group">
+                    <label for="comment">Comment:</label>
+                    <input type="text" id="comment" name="comment">
+                </div>
+                <div class="buttons-bottom">
+                    <button type="submit" class="button">Submit</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

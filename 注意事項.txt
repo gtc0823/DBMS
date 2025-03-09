@@ -1,0 +1,8 @@
+1.改資料庫密碼(db_t,dbms_function都要改)
+2.要打開workbench，不然無法登入purchaser
+3.如需登出，就按上面其他角色的按鈕
+
+登錄帳密:
+"doc": "doc_pass",
+"pur": "pur_pass",
+"adm": "adm_pass"

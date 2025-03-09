@@ -1,0 +1,15 @@
+修改地方:
+1.app.py
+@app.route('/administrator', methods=['GET', 'POST'])  #更新預約紀錄
+我暫時做不出search功能以及顯示病人appointed time，因為那要改後端function(更新資料的id_column_name，應該要以Patient_ID為條件搜索，不是Appointment_ID)
+我怕我動了之後其他都不能用，所以先把下方顯示預約時間給註解掉
+
+@app.route('/adminpatient', methods=['GET', 'POST'])
+
+2.
+administrator.html
+administrator_patient.html
+
+3.
+美化html
+

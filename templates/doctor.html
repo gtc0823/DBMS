@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medical Database System</title>
+    <style>
+        body {
+            text-align: center;
+            background-color: #f0f8ff; /* 调整背景颜色 */
+            font-family: Arial, sans-serif; /* 全局字体设置为 Arial */
+            margin: 0;
+            padding: 0;
+        }
+        h1 {
+            font-size: 36px;
+            margin-bottom: 20px;
+            color: #2f4f4f; /* 调整标题颜色 */
+        }
+        .buttons {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        .button {
+            margin: 0 10px;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            background-color: #000000;
+            color: #fff;
+            text-decoration: none;
+            transition: background-color 0.3s, transform 0.3s;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+        }
+        .button:hover {
+            background-color: #5a9bd6;
+            transform: translateY(-3px);
+        }
+        .button:active {
+            background-color: #357ab7;
+            transform: translateY(1px);
+        }
+        .sidebar {
+            background-color: #e6e6fa;
+            height: 100vh; /* 拉長側邊欄 */
+            width: 220px;
+            padding: 20px;
+            box-sizing: border-box;
+            position: fixed; /* 固定在左侧 */
+            left: 0;
+            top: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .sidebar .button {
+            width: 100%;
+            margin-bottom: 20px;
+        }
+        .container {
+            margin-left: 240px; /* 留出侧边栏的宽度 */
+            padding: 20px;
+            background-color: #fff; /* 调整内容背景颜色 */
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: calc(100% - 260px); /* 留出侧边栏的宽度和左右间距 */
+            text-align: left; /* 将内容文字向左对齐 */
+        }
+    </style>
+</head>
+<body>
+    <h1>Medical Database System</h1>
+    <div class="buttons">
+        <a href="/doctor" class="button">Doctor</a>
+        <a href="/purchaser" class="button">Purchaser</a>
+        <a href="/admin_first" class="button">Administration Staff</a>
+    </div>
+    <div class="sidebar">
+        <a href="/patientdata" class="button">Patient Data</a>
+        <a href="/surgery" class="button">Surgery</a>
+        <a href="/diagnose" class="button">Diagnose</a>
+    </div>
+</body>
+</html>
